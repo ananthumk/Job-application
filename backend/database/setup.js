@@ -4,21 +4,18 @@ const pool = require('../config/db');
 
 const setupDatabase = async () => {
   try {
-    console.log('🔄 Setting up database...');
+    console.log('🔄 Ensuring database schema...');
 
-    // Read SQL file
     const schemaPath = path.join(__dirname, 'schema.sql');
-    const schema = fs.readFileSync(schemaPath, 'utf-8');
+    const schema = fs.readFileSync(schemaPath, 'utf8');
 
-    // Execute SQL
     await pool.query(schema);
 
-    console.log('Database tables created successfully!');
-    process.exit(0);
+    console.log('✅ Database schema ready');
   } catch (error) {
-    console.error('Error setting up database:', error);
-    process.exit(1);
+    console.error('❌ Database setup failed:', error);
+    throw error;
   }
 };
 
-setupDatabase();
+module.exports = setupDatabase;
