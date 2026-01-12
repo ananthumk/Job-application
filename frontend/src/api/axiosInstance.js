@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000/api', 
+  baseURL: 'https://job-application-1-59ln.onrender.com/api', 
   headers: {
     'Content-Type': 'application/json',
   },
