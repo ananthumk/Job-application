@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User, UserPlus } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Register = () => {
@@ -23,9 +23,14 @@ const Register = () => {
 
     try {
       await register(formData.name, formData.email, formData.password, formData.role);
-      navigate('/');
+      // Redirect based on role
+      if (formData.role === 'admin') {
+        navigate('/admin/jobs');
+      } else {
+        navigate('/jobs');
+      }
     } catch (err) {
-      setError(err.message || 'Registration failed');
+      setError(err.response?.data?.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
@@ -107,7 +112,7 @@ const Register = () => {
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   required
                   value={formData.password}
                   onChange={handleChange}

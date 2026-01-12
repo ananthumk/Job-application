@@ -44,6 +44,8 @@ export const AuthProvider = ({ children }) => {
     const response = await axiosInstance.post('/auth/login', { email, password });
     const { token, user } = response.data;
     localStorage.setItem('token', token);
+    localStorage.setItem('userRole', user.role);
+    localStorage.setItem('user', JSON.stringify(user));
     setUser(user);
     setIsAdmin(user.role === 'admin');
   };
@@ -52,12 +54,16 @@ export const AuthProvider = ({ children }) => {
     const response = await axiosInstance.post('/auth/register', { name, email, password, role });
     const { token, user } = response.data;
     localStorage.setItem('token', token);
+    localStorage.setItem('userRole', user.role);
+    localStorage.setItem('user', JSON.stringify(user));
     setUser(user);
     setIsAdmin(user.role === 'admin');
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('user');
     setUser(null);
     setIsAdmin(false);
     navigate('/login');

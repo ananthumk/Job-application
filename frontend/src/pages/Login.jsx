@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
@@ -19,9 +19,18 @@ const Login = () => {
 
     try {
       await login(formData.email, formData.password);
-      navigate('/');
+      // Get user data after login
+      const token = localStorage.getItem('token');
+      if (token) {
+        const userRole = localStorage.getItem('userRole');
+        if (userRole === 'admin') {
+          navigate('/admin/jobs');
+        } else {
+          navigate('/jobs');
+        }
+      }
     } catch (err) {
-      setError(err.message || 'Login failed');
+      setError(err.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -81,7 +90,7 @@ const Login = () => {
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   required
                   value={formData.password}
                   onChange={handleChange}
