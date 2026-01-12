@@ -43,20 +43,7 @@ const Register = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
-        <div>
-          <div className="mx-auto h-16 w-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl flex items-center justify-center mb-6">
-            <UserPlus className="w-8 h-8 text-white" />
-          </div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Create your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Already have an account?{' '}
-            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
-              Sign in
-            </Link>
-          </p>
-        </div>
+        
         <form className="mt-8 space-y-6 bg-white py-10 px-8 shadow-2xl rounded-3xl border border-gray-100" onSubmit={handleSubmit}>
           {error && (
             <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-2xl text-sm">
@@ -165,6 +152,12 @@ const Register = () => {
               )}
             </button>
           </div>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Already have an account?{' '}
+            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
+              Sign in
+            </Link>
+          </p>
         </form>
       </div>
     </div>

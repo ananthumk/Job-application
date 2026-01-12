@@ -43,17 +43,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Sign in to your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Don't have an account?{' '}
-            <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
-              Sign up
-            </Link>
-          </p>
-        </div>
+        
         <form className="mt-8 space-y-6 bg-white py-10 px-8 shadow-2xl rounded-3xl border border-gray-100" onSubmit={handleSubmit}>
           {error && (
             <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-2xl text-sm">
@@ -126,6 +116,12 @@ const Login = () => {
                 'Sign in'
               )}
             </button>
+            <p className="mt-2 text-center text-sm text-gray-600">
+            Don't have an account?{' '}
+            <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
+              Sign up
+            </Link>
+          </p>
           </div>
 
           <div className="text-center">
